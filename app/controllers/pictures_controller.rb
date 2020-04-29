@@ -36,6 +36,13 @@ class PicturesController < ApplicationController
     end
   end
 
+  def destroy
+    @picture = Picture.destroy
+    redirect_to pictures_path
+    flash.now[:notice] = %q(記事を削除しました)
+  end
+  
+
   private
   def picture_params
     params.require(:picture).permit(:title, :content, :image)
