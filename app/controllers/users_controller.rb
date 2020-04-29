@@ -12,11 +12,11 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id unless current_user
       @user = User.find_by(id: session[:user_id])
+      flash[:notice] = %q(ユーザー登録が完了しました)
       redirect_to user_path(current_user)
-      flash.now[:notice] = %q(ユーザー登録が完了しました)
     else
-      render :new
       flash.now[:danger] = %q(ユーザー登録が失敗しました)
+      render :new
     end
   end
 

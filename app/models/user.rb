@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :pictures
+  has_many :favorites, dependent: :destroy
   before_validation { email.downcase! }
 
   validates :name, presence: true, length: { maximum: 30 }
@@ -7,7 +9,4 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
-
-  has_many :pictures
-
 end
