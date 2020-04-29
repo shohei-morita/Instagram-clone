@@ -1,28 +1,3 @@
-<%= form_with(model: @picture, url: choose_new_or_edit, local: true) do |form| %>
-  <% if @picture.errors.any? %>
-    <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
-    <ul>
-    <% @picture.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  <% end %>
+<h1>記事を投稿する</h1>
 
-  <div class=%q(form-group)>
-    <%= form.label :title %>
-    <%= form.text_field :title, class: %q(form-control) %>
-  </div>
-  <div class=%q(form-group)>
-    <%= form.label :content %>
-    <%= form.text_area :content, class:%q(form-control) , rows:8 %>
-  </div>
-  <div class=%q(form-group)>
-    <%= form.label :image %>
-    <%= image_tag(@picture.image.url(:gallery)) if @picture.image && @picture.image.url %>
-    <%= form.file_field :image , class: %q(btn btn-default) %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-  <div class=%q(form-group)>
-    <%= form.submit %q(投稿する), class: %q(btn btn-primary")%>
-  </div>
-<% end %>
+<%= render %q(form) %>

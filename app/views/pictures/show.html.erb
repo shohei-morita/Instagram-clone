@@ -1,2 +1,15 @@
-<h1>Pictures#show</h1>
-<p>Find me in app/views/pictures/show.html.erb</p>
+<h1>記事詳細画面</h1>
+
+<p>タイトル:<%= @picture.title %></p>
+<p>内容:<%= @picture.content %></p>
+<p>
+  <strong>Image:</strong>
+  <% if @picture.image.present? %>
+    <%= image_tag @picture.image.url(:gallery) %>
+  <% end %>
+</p>
+
+<% if @picture.user.id == current_user.id %>
+  <%= link_to "編集する", edit_picture_path(@picture.id) %>
+<% end %>
+<%= link_to "戻る", pictures_path %>
