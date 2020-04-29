@@ -12,4 +12,5 @@
 <% if @picture.user.id == current_user.id %>
   <%= link_to "編集する", edit_picture_path(@picture.id) %>
 <% end %>
+
 <%= link_to "戻る", pictures_path %>
