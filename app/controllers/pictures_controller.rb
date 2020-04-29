@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: %i(show, edit, update, destroy)
-  before_action :prevent_wrong_user, only: %i(edit, update, destroy)
+  before_action :set_picture, only: %i(show edit update destroy)
+  before_action :prevent_wrong_user, only: %i(edit update destroy)
 
   def index
     @pictures = Picture.all
@@ -14,11 +14,13 @@ class PicturesController < ApplicationController
     @picture = current_user.pictures.build(picture_params)
     if params[:back]
       render :new
-    elsif @picture.save
-      redirect_to pictures_path
-      flash.now[:notice] = %q(記事を投稿しました。)
     else
-      render :new
+      if @picture.save
+        redirect_to pictures_path
+        flash.now[:notice] = %q(記事を投稿しました。)
+      else
+        render :new
+      end
     end
   end
 
@@ -27,10 +29,10 @@ class PicturesController < ApplicationController
   def edit; end
 
   def update
-    @picture = Picture.update(picture_params)
+    @picture.update(picture_params)
     if params[:back]
       render :new
-    elsif @picure.save
+    elsif @picture.save
       redirect_to pictures_path
       flash.now[:notice] = %q(記事を編集しました)
     else
@@ -39,9 +41,9 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    @picture = Picture.destroy
+    @picture.destroy
     redirect_to pictures_path
-    flash.now[:notice] = %q(記事を削除しました)
+    flash.now[:danger] = %q(記事を削除しました)
   end
 
   def confirm

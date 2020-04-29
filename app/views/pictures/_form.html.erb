@@ -2,8 +2,8 @@
   <% if @picture.errors.any? %>
     <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
     <ul>
-    <% @picture.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+    <% @picture.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
     </ul>
   <% end %>
@@ -14,7 +14,7 @@
   </div>
   <div class=%q(form-group)>
     <%= form.label :content %>
-    <%= form.text_area :content, class:%q(form-control) , rows:8 %>
+    <%= form.text_area :content, class: %q(form-control) , rows:8 %>
   </div>
   <div class=%q(form-group)>
     <%= form.label :image %>
