@@ -1,2 +1,9 @@
 module PicturesHelper
+  def choose_new_or_edit
+    if action_name == %q(new) || action_name == %q(create)
+      confirm_pictures_path
+    elsif action_name == %q(edit)
+      picture_path
+    end
+  end
 end
