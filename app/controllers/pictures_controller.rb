@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: %i(show, edit)
+  before_action :set_picture, only: %i(show, edit, update, destroy)
   def index
     @pictures = Pictures.all
   end
@@ -41,7 +41,11 @@ class PicturesController < ApplicationController
     redirect_to pictures_path
     flash.now[:notice] = %q(記事を削除しました)
   end
-  
+
+  def confirm
+    @picuture = current_user.pictures.build(picture_params)
+    render :new if @picure.invalid?
+  end
 
   private
   def picture_params
