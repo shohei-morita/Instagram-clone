@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: %i(show)
+  before_action :set_picture, only: %i(show, edit)
   def index
     @pictures = Pictures.all
   end
@@ -10,16 +10,30 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
-    if @picture.save
-      redirect_to pictures_path
-    else
+    if params[:back]
       render :new
+    else
+      if @picture.save
+        redirect_to pictures_path
+        flash.now[:notice] = %q(記事を投稿しました。)
+      else
+        render :new
+      end
     end
   end
 
   def show; end
 
-  def edit
+  def edit; end
+
+  def update
+    @picture = Picture.update(picture_params)
+    if @picure.save
+      redirect_to pictures_path
+      flash.now[:notice] = %q(記事を編集しました)
+    else
+      render :edit
+    end
   end
 
   private
