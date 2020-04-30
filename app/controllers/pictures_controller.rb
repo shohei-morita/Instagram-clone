@@ -14,17 +14,17 @@ class PicturesController < ApplicationController
     @picture = current_user.pictures.build(picture_params)
     if params[:back]
       render :new
+    elsif @picture.save
+      flash[:danger] = %q(ユーザー登録に失敗しました)
+      redirect_to pictures_path
     else
-      if @picture.save
-        flash[:danger] = %q(ユーザー登録が失敗しました)
-        redirect_to pictures_path
-      else
-        render :new
-      end
+      render :new
     end
   end
 
-  def show; end
+  def show
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+  end
 
   def edit; end
 

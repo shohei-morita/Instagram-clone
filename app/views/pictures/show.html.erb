@@ -9,6 +9,13 @@
   <% end %>
 </p>
 
+<% unless @picture.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to %q(お気に入りを解除する), favorite_path(id: @favorite.id), method: :delete, class: %q(btn btn-danger) %>
+  <% else %>
+    <%= link_to %q(お気に入りに登録する), favorite_path(picture_id: @picture.id), method: :post, class: %q(btn btn-primary) %>
+<% end %>
+
 <% if @picture.user.id == current_user.id %>
   <%= link_to "編集する", edit_picture_path(@picture.id) %>
 <% end %>
