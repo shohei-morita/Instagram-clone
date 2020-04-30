@@ -27,6 +27,14 @@
     <%= form.text_area :profile, class: %q(form-control) , rows:8 %>
   </div>
   <div class=%q(form-group)>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div class=%q(form-group)>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password %>
+  </div>
+  <div class=%q(form-group)>
     <%= form.submit %q(編集する), class: %q(btn btn-primary")%>
   </div>
 <% end %>

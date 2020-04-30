@@ -3,6 +3,7 @@
 <h3><%= current_user.name %>さん、おはようございます！</h3>
 
 <p><%= link_to "記事作成", new_picture_path, class: "btn btn-primary" %><p>
+<p><%= link_to "お気に入り一覧", favorites_path %></p>
 
   <table class="table">
   <% if @pictures.present? %>

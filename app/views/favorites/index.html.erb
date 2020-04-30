@@ -1,0 +1,10 @@
+<% @favorites.each do |favorite| %>
+  <p>投稿者<%= favorite.picture.user.name %><p>
+  <p>タイトル<%= favorite.picture.title %><p>
+  <p>記事<%= favorite.picture.content %><p>
+  <% if favorite.picture.image && favorite.picture.image.url %>
+    <p>img<p>
+    <%= image_tag(favorite.picture.image.url(:gallery)) %>
+  <% end %>
+  <%= link_to %q(お気に入り解除する), favorite_path(id: favorite.id), method: :delete, class: %q(btn btn-danger) %>
+<% end %>
