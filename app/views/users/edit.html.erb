@@ -1,0 +1,32 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <div class=%q(form-group)>
+    <%= form.label :image %>
+    <%= image_tag(@user.image.url(:gallery)) if @user.image && @user.image.url %>
+    <%= form.file_field :image , class: %q(btn btn-default) %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+  <div class=%q(form-group)>
+    <%= form.label :name %>
+    <%= form.text_field :name, class: %q(form-control) %>
+  </div>
+  <div class=%q(form-group)>
+    <%= form.label :email %>
+    <%= form.text_field :email, class: %q(form-control) %>
+  </div>
+  <div class=%q(form-group)>
+    <%= form.label :profile %>
+    <%= form.text_area :profile, class: %q(form-control) , rows:8 %>
+  </div>
+  <div class=%q(form-group)>
+    <%= form.submit %q(編集する), class: %q(btn btn-primary")%>
+  </div>
+<% end %>

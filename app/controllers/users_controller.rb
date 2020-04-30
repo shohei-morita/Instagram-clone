@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i(show edit update destroy)
+
   def new
     @user = User.new
     if logged_in?
@@ -20,12 +22,36 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
+  def show; end
+
+  def edit; end
+
+  def update
+    @user.update(user_params)
+
+    if params[:delete_image]
+      @user.image = nil
+      @user.save
+      render :edit
+      return
+    end
+
+    if params[:back]
+      render :edit
+    elsif @user.save
+      flash[:notice] = %q(プロフィールを編集しました)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :profile, :image, :image_cache, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

@@ -1,4 +1,14 @@
 <h1><%= @user.name %>のページ</h1>
-<p><%= @user.email %></p>
+
+<p>
+  <strong>Image:</strong>
+  <% if @user.image.present? %>
+    <%= image_tag @user.image.url(:gallery) %>
+  <% end %>
+</p>
+<p>名前:<%= @user.name %></p>
+<p>email:<%= @user.email %></p>
+<p>プロフィール:<%= @user.profile %></p>
+<%= link_to %q(プロフィールを編集する), edit_user_path %>
 
 <%= link_to %q(インデックスページへ), pictures_path %>
