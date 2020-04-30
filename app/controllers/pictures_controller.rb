@@ -12,10 +12,12 @@ class PicturesController < ApplicationController
 
   def create
     @picture = current_user.pictures.build(picture_params)
+    @user = @picture.user
     if params[:back]
       render :new
     elsif @picture.save
-      flash[:danger] = %q(ユーザー登録に失敗しました)
+      ContactMailer.contact_mail(@user, @picture).deliver
+      flash[:danger] = %q(記事を投稿しました)
       redirect_to pictures_path
     else
       render :new
