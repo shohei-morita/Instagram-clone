@@ -25,7 +25,9 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+    unless current_user == nil
+      @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+    end
   end
 
   def edit; end
