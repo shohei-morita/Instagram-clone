@@ -5,35 +5,27 @@
 <p><%= link_to "記事作成", new_picture_path, class: "btn btn-primary" %><p>
 <p><%= link_to "お気に入り一覧", favorites_path %></p>
 
-  <table class="table">
-  <% if @pictures.present? %>
-    <thead class="table-head">
-      <tr>
-        <th>Icon</th>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Date</th>
-        <th>User</th>
-        <th colspan="3">Functions</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= image_tag picture.image.url(:thumb) if picture.image.present? %></td>
-        <td><%= picture.title %></td>
-        <td><%= picture.content %></td>
-        <td><%= picture.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= picture.user.name %></td>
-        <td><%= link_to "show", picture_path(picture.id) %></td>
-        <% if picture.user.id == current_user.id %>
-          <td><%= link_to "edit", edit_picture_path(picture.id) %></td>
-          <td><%= link_to "destroy", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"} , class: "btn btn-danger"%></td>
+<div class="row">
+  <% @pictures.each do |picture| %>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <% if picture.image.present? %>
+          <%= image_tag picture.image.url(:gallery) if picture.image.present? %>
         <% else %>
-          <td colspan="3"></td>
+          <%= image_tag %q(no_image.png), class: %q(no-image) %>
         <% end %>
-      </tr>
-    <% end %>
-    </tbody>
-    <% end %>
-  </table>
+        <div class="caption">
+          <h4>タイトル:<%= picture.title %></h4>
+          <h5>投稿者:<%= link_to picture.user.name, user_path(picture.user.id) %><h5>
+          <p>
+            <%= link_to "show", picture_path(picture.id), class: %q(btn btn-primary) %>
+            <% if picture.user.id == current_user.id %>
+              <%= link_to "edit", edit_picture_path(picture.id), class: %q(btn btn-primary) %>
+              <%= link_to "destroy", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"}, class: %q(btn btn-danger)  %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

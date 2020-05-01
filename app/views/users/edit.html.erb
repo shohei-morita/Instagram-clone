@@ -15,6 +15,9 @@
     <%= form.hidden_field :image_cache %>
   </div>
   <div class=%q(form-group)>
+    <%= form.submit "画像を削除する", name: "delete_image", class: "btn btn-danger" %>
+  </div>
+  <div class=%q(form-group)>
     <%= form.label :name %>
     <%= form.text_field :name, class: %q(form-control) %>
   </div>
@@ -27,14 +30,7 @@
     <%= form.text_area :profile, class: %q(form-control) , rows:8 %>
   </div>
   <div class=%q(form-group)>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-  <div class=%q(form-group)>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password %>
-  </div>
-  <div class=%q(form-group)>
     <%= form.submit %q(編集する), class: %q(btn btn-primary")%>
+    <%= form.submit "戻る", name: "back", class: "confirm-btn btn-info" %>
   </div>
 <% end %>

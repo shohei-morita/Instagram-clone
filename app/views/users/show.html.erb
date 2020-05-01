@@ -1,14 +1,33 @@
-<h1><%= @user.name %>のページ</h1>
+<div class="wrapper-profile">
+<h4><strong><%= @user.name %>さんのプロフィール</strong></h4>
 
-<p>
-  <strong>Image:</strong>
-  <% if @user.image.present? %>
-    <%= image_tag @user.image.url(:gallery) %>
+<table class="table table-striped">
+  <tr class="img-profile">
+    <th colspan="2">
+      <% if @user.image.present? %>
+        <%= image_tag @user.image.url(:gallery), class: %q(img-circle) %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+    <th>名前</th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th>email</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>プロフィール</th>
+    <td><%= safe_join(@user.profile.split(%Q(\n)),tag(:br)) if @user.profile.present? %></td>
+  </tr>
+</table>
+
+
+<ul class="list-group">
+  <% if @user.id == current_user.id %>
+  <li><%= link_to %q(Edit your profile), edit_user_path, class: %q(list-group-item list-group-item-action list1) %></li>
   <% end %>
-</p>
-<p>名前:<%= @user.name %></p>
-<p>email:<%= @user.email %></p>
-<p>プロフィール:<%= @user.profile %></p>
-<%= link_to %q(プロフィールを編集する), edit_user_path %>
-
-<%= link_to %q(インデックスページへ), pictures_path %>
+  <li><%= link_to %q(Go to Index), pictures_path, class: %q(list-group-item list-group-item-action list2) %></li>
+</ul>
+</div>

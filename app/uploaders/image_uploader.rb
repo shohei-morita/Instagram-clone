@@ -1,12 +1,12 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  version :thumb do
-    process resize_to_fill: [50,50]
+  version :gallery do
+    process resize_to_fill: [250,250]
   end
 
-  version :gallery do
-    process resize_to_fill: [300,300]
+  version :thumb do
+    process resize_to_fill: [50,50]
   end
 
   storage :file

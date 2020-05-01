@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i(show edit update destroy)
+  before_action :prevent_wrong_user, only: %i(edit update)
 
   def new
     @user = User.new
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
     end
 
     if params[:back]
-      render :edit
+      redirect_to user_path(@user.id)
     elsif @user.save
       flash[:notice] = %q(プロフィールを編集しました)
       redirect_to user_path(@user.id)
@@ -53,5 +54,13 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def prevent_wrong_user
+    @user = User.find_by(id: params[:id])
+    unless @user.id == current_user.id
+      flash.now[:danger] = %q(権限がありません)
+      render :show
+    end
   end
 end
