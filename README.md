@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##　概要
+インスタグラムのクローンサイト。名前はエクスタグラム。
 
-Things you may want to cover:
+* 投稿機能（jpegファイルも掲載できます）
 
-* Ruby version
+* 確認機能
 
-* System dependencies
+* 編集機能
 
-* Configuration
+* 削除機能
 
-* Database creation
+* 文字数制限
 
-* Database initialization
+* お気に入り追加・削除機能
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* 投稿後自動メール送信機能

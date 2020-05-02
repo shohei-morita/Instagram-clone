@@ -12,10 +12,10 @@
           <h4>Title:<%= picture.title %></h4>
           <h5>Author:<%= link_to picture.user.name, user_path(picture.user.id) %><h5>
           <p>
-            <%= link_to "show", picture_path(picture.id), class: %q(btn btn-primary) %>
+            <%= link_to %q(show), picture_path(picture.id), class: %q(btn btn-primary) %>
             <% if picture.user.id == current_user.try(:id) %>
-              <%= link_to "edit", edit_picture_path(picture.id), class: %q(btn btn-primary) %>
-              <%= link_to "destroy", picture_path(picture.id), method: :delete, data: { confirm: "本当に削除しても良いですか？"}, class: %q(btn btn-danger) %>
+              <%= link_to %q(edit), edit_picture_path(picture.id), class: %q(btn btn-primary) %>
+              <%= link_to %q(destroy), picture_path(picture.id), method: :delete, data: { confirm: %q(本当に削除しても良いですか？)}, class: %q(btn btn-danger) %>
             <% end %>
           </p>
         </div>
