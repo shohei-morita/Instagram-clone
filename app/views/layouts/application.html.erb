@@ -19,12 +19,12 @@
         <li><%= link_to %q(New Post), new_picture_path, class: %q(btn btn-primary) %></li>
         <li><%= link_to %q(View Posts), pictures_path, class: %q(btn btn-default) %></li>
         <li><%= link_to %q(My Favorites), favorites_path, class: %q(btn btn-default) %></li>
-        <li><%= link_to %q(Log Out), session_path(current_user.id), method: :delete, class: %q(btn btn-danger) %></li>
+        <li><%= link_to %q(Logout), session_path(current_user.id), method: :delete, class: %q(btn btn-danger) %></li>
       </ul>
     <% else %>
       <%= link_to %q(Extagram), pictures_path, class: %q(logo) %>
       <ul>
-        <li><%= link_to %q(SignUp), new_user_path, class: %q(btn btn-default) %></li>
+        <li><%= link_to %q(Signup), new_user_path, class: %q(btn btn-default) %></li>
         <li><%= link_to %q(Login), new_session_path, class: %q(btn btn-default) %></li>
       </ul>
     <% end %>
