@@ -9,20 +9,25 @@
   <% end %>
 
   <div class=%q(form-group)>
-    <%= form.label :title %>
+    <%= form.label :Title %>
     <%= form.text_field :title, class: %q(form-control) %>
   </div>
   <div class=%q(form-group)>
-    <%= form.label :content %>
+    <%= form.label :Content %>
     <%= form.text_area :content, class: %q(form-control) , rows:8 %>
   </div>
   <div class=%q(form-group)>
-    <%= form.label :image %>
+    <%= form.label :Image %>
     <%= image_tag(@picture.image.url(:gallery)) if @picture.image && @picture.image.url %>
     <%= form.file_field :image , class: %q(btn btn-default) %>
     <%= form.hidden_field :image_cache %>
   </div>
+  <% unless action_name == %q(new) || action_name == %q(create)|| action_name == %q(confirm) %>
+  <div class="form-group">
+    <%= form.submit "Remove image", name: %q(remove_image), class: %q(btn btn-danger delete-image) %>
+  </div>
+  <% end %>
   <div class=%q(form-group)>
-    <%= form.submit %q(投稿する), class: %q(btn btn-primary")%>
+    <%= form.submit %q(Post!), class: %q(btn btn-primary new-post)%>
   </div>
 <% end %>

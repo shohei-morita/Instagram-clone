@@ -1,7 +1,7 @@
-<h1>記事詳細画面</h1>
+<h2><%= @picture.user.name%>さんのPost</h2>
 
-<p>タイトル:<%= @picture.title %></p>
-<p>内容:<%= @picture.content %></p>
+<h3>Title:<%= @picture.title %></h3>
+<p>Content:<%= @picture.content %></p>
 <p>
   <strong>Image:</strong>
   <% if @picture.image.present? %>
@@ -11,15 +11,14 @@
 
 <% unless @picture.user_id == current_user.try(:id) %>
   <% if @favorite.present? %>
-    <%= link_to %q(お気に入り解除する), favorite_path(id: @favorite.id), method: :delete, class: %q(btn btn-danger) %>
+    <%= link_to %q(Release), favorite_path(id: @favorite.id), method: :delete, class: %q(btn btn-danger) %>
   <% elsif current_user == nil %>
   <% else %>
-    <%= link_to %q(お気に入りする), favorites_path(picture_id: @picture.id), method: :post, class: %q(btn btn-primary) %>
+    <%= link_to %q(Favorite!), favorites_path(picture_id: @picture.id), method: :post, class: %q(btn btn-primary) %>
   <% end %>
 <% end %>
-
 <% if @picture.user.id == current_user.try(:id) %>
-  <%= link_to "編集する", edit_picture_path(@picture.id) %>
+  <%= link_to %q(Edit), edit_picture_path(@picture.id), class: %q(btn btn-primary) %>
 <% end %>
 
-<%= link_to "戻る", pictures_path %>
+<%= link_to %q(Return), pictures_path, class: %q(btn btn-primary return-edit) %>

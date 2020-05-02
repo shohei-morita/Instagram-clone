@@ -3,11 +3,15 @@ class PicturesController < ApplicationController
   before_action :prevent_wrong_user, only: %i(edit update destroy)
 
   def index
-    @pictures = Picture.all.order(%q(updated_at DESC))
+    @pictures = Picture.all.order(id: %q(DESC))
   end
 
   def new
     @picture = Picture.new
+    unless current_user.present?
+      flash[:danger] = %q(ユーザー登録をしてください)
+      redirect_to pictures_path
+    end
   end
 
   def create
@@ -25,7 +29,7 @@ class PicturesController < ApplicationController
   end
 
   def show
-    unless current_user == nil
+    if current_user.present?
       @favorite = current_user.favorites.find_by(picture_id: @picture.id)
     end
   end
@@ -33,18 +37,16 @@ class PicturesController < ApplicationController
   def edit; end
 
   def update
-    @picture.update(picture_params)
-
-    if params[:delete_image]
+    if params[:remove_image]
       @picture.image = nil
       @picture.save
       render :edit
       return
     end
 
-    if params[:back]
-      render :new
-    elsif @picture.save
+    if params[:return]
+      redirect_to pictures_path
+    elsif @picture.update(picture_params)
       flash[:notice] = %q(記事を編集しました)
       redirect_to pictures_path
     else
@@ -60,6 +62,9 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = current_user.pictures.build(picture_params)
+    if params[:return]
+      render :new
+    end
     render :new if @picture.invalid?
   end
 

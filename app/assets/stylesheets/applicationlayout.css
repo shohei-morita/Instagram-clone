@@ -1,4 +1,35 @@
-.container {
+body {
+  background-color: #F6F3E8;
+}
+
+footer {
+  height: 100px;
+}
+
+.page-header {
+  padding-top: 25px;
+  height: 200px;
+  text-align: left;
+  background-color: #62BDC9;
+  font-size: 5rem;
+}
+
+.logo {
+  color: white;
   padding-left: 50px;
-  padding-right: 50px;
+}
+
+.page-header li {
+  list-style: none;
+  float: left;
+  padding-left: 10px;
+}
+
+.logo {
+  font-size: 3rem;
+}
+
+.container {
+  padding-left: 10px;
+  padding-right: 10px;
 }

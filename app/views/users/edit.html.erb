@@ -8,29 +8,29 @@
     </ul>
   <% end %>
 
-  <div class=%q(form-group)>
-    <%= form.label :image %>
-    <%= image_tag(@user.image.url(:gallery)) if @user.image && @user.image.url %>
-    <%= form.file_field :image , class: %q(btn btn-default) %>
-    <%= form.hidden_field :image_cache %>
+  <div class="form-group">
+    <p><%= form.label :Image %></p>
+    <p><%= image_tag(@user.image.url(:gallery)) if @user.image && @user.image.url %><p>
+    <p><%= form.file_field :image , class: %q(btn btn-default) %></p>
   </div>
-  <div class=%q(form-group)>
-    <%= form.submit "画像を削除する", name: "delete_image", class: "btn btn-danger" %>
+  <div class="form-group">
+    <%= form.submit "Remove image", name: %q(remove_image), class: %q(btn btn-danger) %>
   </div>
-  <div class=%q(form-group)>
-    <%= form.label :name %>
+  <div class="form-group">
+    <%= form.label :Name %>
     <%= form.text_field :name, class: %q(form-control) %>
   </div>
-  <div class=%q(form-group)>
-    <%= form.label :email %>
+  <div class="form-group">
+    <%= form.label :Email %>
     <%= form.text_field :email, class: %q(form-control) %>
   </div>
-  <div class=%q(form-group)>
-    <%= form.label :profile %>
+  <div class="form-group">
+    <%= form.label :Profile %>
     <%= form.text_area :profile, class: %q(form-control) , rows:8 %>
   </div>
-  <div class=%q(form-group)>
-    <%= form.submit %q(編集する), class: %q(btn btn-primary")%>
-    <%= form.submit "戻る", name: "back", class: "confirm-btn btn-info" %>
+  <div class="form-group">
+    <p><%= form.submit %q(Open your profile), class: %q(btn btn-primary)%></p>
   </div>
 <% end %>
+
+<p><%= link_to %q(Return), user_path(current_user.id), name: %q(return), class: %q(btn btn-primary) %></p>

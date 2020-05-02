@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       return
     end
 
-    if params[:back]
+    if params[:return]
       redirect_to user_path(@user.id)
     elsif @user.save
       flash[:notice] = %q(プロフィールを編集しました)
