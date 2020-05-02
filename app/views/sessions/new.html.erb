@@ -1,15 +1,16 @@
-<h1>ログインページ</h1>
-
+<div class="wrapper">
+<h1>Log in</h1>
 <%= form_with(scope: :session, url: sessions_path, local: true) do |form| %>
-<div>
+<div class="form-group">
   <%= form.label :email %>
-  <%= form.email_field :email %>
+  <%= form.email_field :email, class: %q(form-control)  %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :password %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password, class: %q(form-control) %>
 </div>
-<div>
-  <%= form.submit %q(Log in) %>
+<div class="form-group">
+  <%= form.submit %q(Log in), class: %q(btn btn-primary) %>
 </div>
 <% end %>
+</div>
