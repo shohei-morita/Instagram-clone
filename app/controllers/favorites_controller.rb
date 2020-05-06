@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     favorite = current_user.favorites.find_by(id: params[:id])
-    if favorite == nil
+    if favorite.nil?
       redirect_to pictures_path
     elsif favorite.destroy
       flash[:notice] = %Q(#{favorite.picture.user.name}さんの投稿をお気に入り解除しました)
