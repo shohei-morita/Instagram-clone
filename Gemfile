@@ -3,10 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 gem 'bcrypt', '3.1.11'
+gem 'bcrypt_pbkdf'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.2'
 gem 'dotenv-rails'
+gem 'ed25519'
 gem 'faker'
 gem 'fog-aws'
 gem 'jbuilder', '~> 2.5'
